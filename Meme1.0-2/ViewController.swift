@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pickAnImage(_ sender: Any) {
+        let pickerController = UIImagePickerController()
+        
+        self.present(pickerController, animated: true, completion: nil)
     }
     
 }
