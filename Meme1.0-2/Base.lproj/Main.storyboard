@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GN2-D0-ELn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="GN2-D0-ELn" secondAttribute="bottom" id="OT0-Jh-zvh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GN2-D0-ELn" secondAttribute="bottom" id="OT0-Jh-zvh"/>
                             <constraint firstItem="GN2-D0-ELn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SxN-uf-7oO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GN2-D0-ELn" secondAttribute="trailing" id="VfZ-cx-ty2"/>
                             <constraint firstItem="GN2-D0-ELn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oDt-9c-w5o"/>
