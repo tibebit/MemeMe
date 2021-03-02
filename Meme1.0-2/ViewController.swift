@@ -54,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    //MARK: Selector Methods
+    //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
         //dump(view.frame.origin)
         view.frame.origin.y = -getKeyboardHeight( notification)
@@ -65,7 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //dump(getKeyboardHeight(notification))
         view.frame.origin.y = 0
     }
-    //MARK: Keyboard
+    
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -116,4 +116,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 }
-
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        showKeyboard()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+}
