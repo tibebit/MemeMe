@@ -41,6 +41,9 @@
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="8G0-c1-Rke" userLabel="Cancel Button Item"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="imagePickerView" destination="GN2-D0-ELn" id="EhN-kW-tVb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
