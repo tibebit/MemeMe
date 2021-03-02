@@ -36,7 +36,7 @@
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FAd-PD-4hR"/>
                         <barButtonItem title="Album" id="9IM-dt-n6j" userLabel="Photo Library Button Item">
                             <connections>
-                                <action selector="pickAnImage:" destination="BYZ-38-t0r" id="y70-ls-aLw"/>
+                                <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="K79-Ec-POO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="cLd-Pu-spI"/>

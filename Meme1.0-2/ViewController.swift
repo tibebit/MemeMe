@@ -15,7 +15,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func pickAnImage(_ sender: Any) {
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         let pickerController = UIImagePickerController()
         
         pickerController.delegate = self
@@ -24,13 +24,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("imagePickerControllerDidCancel called")
+        //print("imagePickerControllerDidCancel called")
+        
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("imagePickerController called")
+        //print("imagePickerController called")
+        
         dismiss(animated: true, completion: nil)
+        
+        if let image = info[.originalImage] as? UIImage {
+            imagePickerView.image = image
+        }
     }
 }
 
