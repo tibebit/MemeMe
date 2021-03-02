@@ -32,9 +32,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
+    
     //MARK: UI Functions
     func textFieldsSetup() {
-        
+        //Top text field setup
+        topTextField.text = "TOP"
+        topTextField.textAlignment = .center
+        topTextField.defaultTextAttributes = memeTextAttributes
+        //Bottom text field setup
+        bottomTextField.text = "BOTTOM"
+        bottomTextField.textAlignment = .center
+        bottomTextField.defaultTextAttributes = memeTextAttributes
     }
     //MARK: Actions
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
