@@ -51,6 +51,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cameraButton" destination="iKa-Ik-f0T" id="BDV-ML-VU4"/>
                         <outlet property="imagePickerView" destination="GN2-D0-ELn" id="EhN-kW-tVb"/>
                     </connections>
                 </viewController>
