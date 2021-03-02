@@ -78,10 +78,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.text = "TOP"
         topTextField.textAlignment = .center
         topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.delegate = self
         //Bottom text field setup
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .center
         bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.delegate = self
     }
     //MARK: Actions
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
