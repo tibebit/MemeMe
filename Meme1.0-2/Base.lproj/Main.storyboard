@@ -65,8 +65,10 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bottomTextField" destination="Jrn-Pz-eYS" id="rRS-RV-czu"/>
                         <outlet property="cameraButton" destination="iKa-Ik-f0T" id="BDV-ML-VU4"/>
                         <outlet property="imagePickerView" destination="GN2-D0-ELn" id="EhN-kW-tVb"/>
+                        <outlet property="topTextField" destination="0z1-kL-rmO" id="1sH-22-pTm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
