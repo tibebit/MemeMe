@@ -72,7 +72,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
     }
-    //MARK: UI Functions
+    func showKeyboard() {
+        
+        if let activeTextField = activeTextField {
+            activeTextField.becomeFirstResponder()
+        }
+    }
+    func hideKeyboard()  {
+        
+        if let activeTextField = activeTextField {
+            activeTextField.resignFirstResponder()
+        }
+    }
+    //MARK: TextFields Setup
     func textFieldsSetup() {
         //Top text field setup
         topTextField.text = "TOP"
