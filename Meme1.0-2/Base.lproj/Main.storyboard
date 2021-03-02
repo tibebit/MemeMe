@@ -32,7 +32,11 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="4pa-Sz-VE8"/>
-                        <barButtonItem image="camera.fill" catalog="system" id="iKa-Ik-f0T" userLabel="Camera Button Item"/>
+                        <barButtonItem image="camera.fill" catalog="system" id="iKa-Ik-f0T" userLabel="Camera Button Item">
+                            <connections>
+                                <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="ncZ-8Q-MDM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FAd-PD-4hR"/>
                         <barButtonItem title="Album" id="9IM-dt-n6j" userLabel="Photo Library Button Item">
                             <connections>
