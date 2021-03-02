@@ -17,12 +17,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        textFieldsSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+    //MARK: UI Functions
+    func textFieldsSetup() {
+        
     }
     //MARK: Actions
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
