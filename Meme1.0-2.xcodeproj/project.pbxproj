@@ -99,6 +99,7 @@
 		CD4A7E6C25EA830700879F28 /* Meme1.0-2 */ = {
 			isa = PBXGroup;
 			children = (
+				CD6497D325EEB0C300BE738E /* Models */,
 				CD4A7E6D25EA830700879F28 /* AppDelegate.swift */,
 				CD4A7E6F25EA830700879F28 /* SceneDelegate.swift */,
 				CD4A7E7125EA830700879F28 /* ViewController.swift */,
@@ -126,6 +127,13 @@
 				CD4A7E9125EA830900879F28 /* Info.plist */,
 			);
 			path = "Meme1.0-2UITests";
+			sourceTree = "<group>";
+		};
+		CD6497D325EEB0C300BE738E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
