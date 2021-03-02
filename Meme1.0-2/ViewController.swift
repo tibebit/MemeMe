@@ -56,11 +56,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     //MARK: Selector Methods
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight( notification)
+        //dump(view.frame.origin)
+        view.frame.origin.y = -getKeyboardHeight( notification)
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        view.frame.origin.y = 0.0
+        //dump(view.frame.origin)
+        //dump(getKeyboardHeight(notification))
+        view.frame.origin.y = 0
     }
     //MARK: Keyboard
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
