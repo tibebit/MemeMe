@@ -22,6 +22,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         self.present(pickerController, animated: true, completion: nil)
     }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("imagePickerControllerDidCancel called")
+        picker.dismiss(animated: true, completion: nil)
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("imagePickerController called")
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
