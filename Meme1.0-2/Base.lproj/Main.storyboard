@@ -60,7 +60,11 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="cLd-Pu-spI"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Meme Editor" id="nP2-FA-79z">
-                        <barButtonItem key="leftBarButtonItem" image="square.and.arrow.up" catalog="system" id="BsV-jk-Uho" userLabel="Share Button Item"/>
+                        <barButtonItem key="leftBarButtonItem" image="square.and.arrow.up" catalog="system" id="BsV-jk-Uho" userLabel="Share Button Item">
+                            <connections>
+                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="hJd-2R-kRs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="8G0-c1-Rke" userLabel="Cancel Button Item"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -68,6 +72,7 @@
                         <outlet property="bottomTextField" destination="Jrn-Pz-eYS" id="rRS-RV-czu"/>
                         <outlet property="cameraButton" destination="iKa-Ik-f0T" id="BDV-ML-VU4"/>
                         <outlet property="imagePickerView" destination="GN2-D0-ELn" id="EhN-kW-tVb"/>
+                        <outlet property="shareButton" destination="BsV-jk-Uho" id="o02-qs-z9p"/>
                         <outlet property="topTextField" destination="0z1-kL-rmO" id="1sH-22-pTm"/>
                     </connections>
                 </viewController>
