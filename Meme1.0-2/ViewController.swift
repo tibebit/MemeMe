@@ -121,7 +121,7 @@ class ViewController: UIViewController {
         self.bottomTextField.clearsOnBeginEditing = true
         
     }
-    //MARK: Meme Stuffs
+    //MARK: Meme Functions
     func save(_ memedImage: UIImage) {
         
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
@@ -142,13 +142,13 @@ class ViewController: UIViewController {
     
     //MARK: UI Functions
     func hideToolbarAndNavbar() {
-        self.navigationController?.toolbar.isHidden = true
-        self.navigationController?.navigationBar.isHidden = true
+        navbar.isHidden = true
+        toolbar.isHidden = true
     }
     
     func showToolbarAndNavbar() {
-        self.navigationController?.toolbar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = false
+        navbar.isHidden = false
+        toolbar.isHidden = false
     }
     
     func enableShareButton() {
