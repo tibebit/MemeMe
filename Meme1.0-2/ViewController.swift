@@ -27,7 +27,9 @@ class ViewController: UIViewController {
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        textFieldsSetup()
+        self.topTextField.delegate = self
+        self.bottomTextField.delegate = self
+        textFieldsDefaultAppeareanceSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,21 +96,24 @@ class ViewController: UIViewController {
             activeTextField.resignFirstResponder()
         }
     }
+    
     //MARK: TextFields Setup
-    func textFieldsSetup() {
+    func textFieldsDefaultAppeareanceSetup() {
         //Top text field setup
-        //MARK: HERE I SHOULD DISTINGUISH BETWEEN THE APPEAREANCE AND THE OTHER ATTRIBUTES
+        
         self.topTextField.defaultTextAttributes = memeTextAttributes
         self.topTextField.text = "TOP"
         self.topTextField.textAlignment = .center
+        self.topTextField.adjustsFontSizeToFitWidth = true
         self.topTextField.clearsOnBeginEditing = true
-        self.topTextField.delegate = self
+        
         //Bottom text field setup
         self.bottomTextField.defaultTextAttributes = memeTextAttributes
         self.bottomTextField.text = "BOTTOM"
         self.bottomTextField.textAlignment = .center
+        self.bottomTextField.adjustsFontSizeToFitWidth = true
         self.bottomTextField.clearsOnBeginEditing = true
-        self.bottomTextField.delegate = self
+        
     }
     //MARK: Meme Stuffs
     func save(_ memedImage: UIImage) {
@@ -159,7 +164,6 @@ class ViewController: UIViewController {
         
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        
         activityViewController.completionWithItemsHandler = {
             (_ , completed, _, _) in
             if completed {
