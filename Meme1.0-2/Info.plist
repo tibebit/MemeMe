@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to save your awesome meme to your photo library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to take a picture</string>
 	<key>CFBundleDevelopmentRegion</key>
