@@ -123,9 +123,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.delegate = self
     }
     //MARK: Meme Stuffs
-    func save() {
+    func save(_ memedImage: UIImage) {
         
-        let memedImage = generateMemedImage()
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
     }
     func generateMemedImage() -> UIImage {
