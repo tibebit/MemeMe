@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = false
+        disableShareButton()
         subscribeToKeyboardNotifications()
     }
     
@@ -148,7 +148,22 @@ class ViewController: UIViewController {
         self.navigationController?.toolbar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
     }
+    
+    func enableShareButton() {
+        self.shareButton.isEnabled = true
+    }
+    
+    func disableShareButton() {
+        self.shareButton.isEnabled = false
+    }
     //MARK: Actions
+    
+    @IBAction func resetDefaultContent(_ sender: Any) {
+        textFieldsDefaultAppearanceSetup()
+        imagePickerView.image = nil
+        disableShareButton()
+    }
+    
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         
         let imagePicker = UIImagePickerController()
@@ -212,6 +227,6 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
         }
-        shareButton.isEnabled = true
+        enableShareButton()
     }
 }
