@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
-        textFieldsDefaultAppeareanceSetup()
+        textFieldsDefaultAppearanceSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: TextFields Setup
-    func textFieldsDefaultAppeareanceSetup() {
+    func textFieldsDefaultAppearanceSetup() {
         //Top text field setup
         
         self.topTextField.defaultTextAttributes = memeTextAttributes
