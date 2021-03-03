@@ -121,6 +121,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.delegate = self
     }
+    //MARK: Meme Stuffs
+    func save() {
+        
+        let memedImage = generateMemedImage()
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
+    }
+    func generateMemedImage() -> UIImage {
+        
+        hideToolbarAndNavbar()
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        showToolbarAndNavbar()
+        
+        return memedImage
+    }
+    
+    //MARK: UI Functions
+    func hideToolbarAndNavbar() {
+        self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    func showToolbarAndNavbar() {
+        self.navigationController?.toolbar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
+    }
     //MARK: Actions
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         
