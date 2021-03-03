@@ -97,15 +97,18 @@ class ViewController: UIViewController {
     //MARK: TextFields Setup
     func textFieldsSetup() {
         //Top text field setup
-        topTextField.text = "TOP"
-        topTextField.textAlignment = .center
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.delegate = self
+        //MARK: HERE I SHOULD DISTINGUISH BETWEEN THE APPEAREANCE AND THE OTHER ATTRIBUTES
+        self.topTextField.defaultTextAttributes = memeTextAttributes
+        self.topTextField.text = "TOP"
+        self.topTextField.textAlignment = .center
+        self.topTextField.clearsOnBeginEditing = true
+        self.topTextField.delegate = self
         //Bottom text field setup
-        bottomTextField.text = "BOTTOM"
-        bottomTextField.textAlignment = .center
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.delegate = self
+        self.bottomTextField.defaultTextAttributes = memeTextAttributes
+        self.bottomTextField.text = "BOTTOM"
+        self.bottomTextField.textAlignment = .center
+        self.bottomTextField.clearsOnBeginEditing = true
+        self.bottomTextField.delegate = self
     }
     //MARK: Meme Stuffs
     func save(_ memedImage: UIImage) {
