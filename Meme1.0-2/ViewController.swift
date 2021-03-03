@@ -23,7 +23,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-
+    @IBOutlet weak var navbar: UINavigationBar!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
