@@ -58,14 +58,6 @@ class ViewController: UIViewController {
     }
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-      
-//        print("VIEW (show)")
-//        dump(view.frame.origin.y)
-//        print("TEXTFIELD (show)")
-//        dump(activeTextField?.frame.origin.y)
-//        print("KEYBOARD (show)")
-//        dump(getKeyboardHeight(notification))
-        
         //if the keyboard is going to hide the textfield the view slides up. The view slides up only if the view has not been shifted up and it is in the ""initial state"
         if activeTextField!.frame.origin.y > getKeyboardY(notification) && view.frame.origin.y >= 0 {
             view.frame.origin.y -= getKeyboardHeight( notification)
@@ -73,14 +65,6 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-//        print("VIEW (hide)")
-//        dump(view.frame.origin.y)
-//        print("TEXTFIELD (hide)")
-//        dump(activeTextField?.frame.origin.y)
-//        print("KEYBOARD (hide)")
-//        dump(getKeyboardHeight(notification))
-//        print("NAVIGATION BAR (hide)")
-//        dump(navigationController!.navigationBar.frame.size.height)
         //if the keyboard had shifted the view previously, the view get back to its original position
         if view.frame.origin.y < 0 {
             view.frame.origin.y += getKeyboardHeight(notification)
