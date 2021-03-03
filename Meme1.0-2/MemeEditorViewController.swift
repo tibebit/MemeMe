@@ -170,6 +170,7 @@ class MemeEditorViewController: UIViewController {
         self.shareButton.isEnabled = false
     }
     //MARK: Actions
+    
     //Polish the UI
     @IBAction func resetDefaultContent(_ sender: Any) {
         textFieldsDefaultAppearanceSetup()
@@ -203,6 +204,7 @@ class MemeEditorViewController: UIViewController {
             if completed {
                 self.save(memedImage)
             }
+            //The activity view controller is dismissed
             self.dismiss(animated: true, completion: nil)
         }
         
