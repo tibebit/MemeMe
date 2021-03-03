@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  Meme1.0-2
 //
 //  Created by Fabio Tiberio on 27/02/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MemeEditorViewController: UIViewController {
     
     //MARK: Properties
     let memeTextAttributes : [NSAttributedString.Key: Any] = [
@@ -34,26 +34,26 @@ class ViewController: UIViewController {
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
         //TextFields appearance properties setup
-        textFieldsDefaultAppearanceSetup()
+        self.textFieldsDefaultAppearanceSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         //Camera button is enabled only if the device has a camera
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         //share button is disabled. It is disabled until the user picks an image from the photo album or device camera
-        disableShareButton()
+        self.disableShareButton()
         
         //listen to keyboard notifications
-        subscribeToKeyboardNotifications()
+        self.subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
+        self.unsubscribeFromKeyboardNotifications()
     }
     //MARK: Notifications
     func subscribeToKeyboardNotifications() {
@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //Gets the y position of the keyboard
     func getKeyboardY(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -90,20 +91,21 @@ class ViewController: UIViewController {
         return keyboardSize.cgRectValue.origin.y
     }
     
+    //Gets the height of the keyboard
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.size.height
     }
-    
+    //the current text field selected becomes the first responder and makes the keyboard appear on the screen
     func showKeyboard() {
         
         if let activeTextField = activeTextField {
             activeTextField.becomeFirstResponder()
         }
     }
-    
+    //the current text field selected becomes the first responder and makes the keyboard disappear off the screen
     func hideKeyboard()  {
         
         if let activeTextField = activeTextField {
@@ -114,7 +116,6 @@ class ViewController: UIViewController {
     //MARK: TextFields Setup
     func textFieldsDefaultAppearanceSetup() {
         //Top text field setup
-        
         self.topTextField.defaultTextAttributes = memeTextAttributes
         self.topTextField.text = "TOP"
         self.topTextField.textAlignment = .center
@@ -136,7 +137,7 @@ class ViewController: UIViewController {
     }
     func generateMemedImage() -> UIImage {
         //To avoid the toolbar and navbar to be shown in the render they are hidden
-        hideToolbarAndNavbar()
+        self.hideToolbarAndNavbar()
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -145,20 +146,20 @@ class ViewController: UIViewController {
         UIGraphicsEndImageContext()
         
         //Make the navbar and the toolbar visible again
-        showToolbarAndNavbar()
+        self.showToolbarAndNavbar()
         
         return memedImage
     }
     
     //MARK: UI Functions
     func hideToolbarAndNavbar() {
-        navbar.isHidden = true
-        toolbar.isHidden = true
+        self.navbar.isHidden = true
+        self.toolbar.isHidden = true
     }
     
     func showToolbarAndNavbar() {
-        navbar.isHidden = false
-        toolbar.isHidden = false
+        self.navbar.isHidden = false
+        self.toolbar.isHidden = false
     }
     
     func enableShareButton() {
@@ -173,7 +174,7 @@ class ViewController: UIViewController {
     @IBAction func resetDefaultContent(_ sender: Any) {
         textFieldsDefaultAppearanceSetup()
         imagePickerView.image = nil
-        disableShareButton()
+        self.disableShareButton()
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
@@ -209,14 +210,14 @@ class ViewController: UIViewController {
     }
     
 }
-extension ViewController: UITextFieldDelegate {
+extension MemeEditorViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
         if textField.clearsOnBeginEditing {
             textField.clearsOnBeginEditing = false
         }
-        showKeyboard()
+        self.showKeyboard()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -225,22 +226,22 @@ extension ViewController: UITextFieldDelegate {
     }
     
 }
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: ImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        dismiss(animated: true, completion: nil)
         
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
         }
         //The user has picked an image. So the share button is enabled
-        enableShareButton()
+        self.enableShareButton()
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
