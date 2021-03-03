@@ -176,15 +176,16 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        if textField.clearsOnBeginEditing {
+            textField.clearsOnBeginEditing = false
+        }
         showKeyboard()
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         return true
     }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.isEditing
-    }
+    
 }
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
