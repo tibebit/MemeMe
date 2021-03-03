@@ -28,14 +28,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textFieldsSetup()
-        self.isEditing = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = self.isEditing
+        shareButton.isEnabled = false
         subscribeToKeyboardNotifications()
     }
     
@@ -199,7 +198,6 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
         }
-        self.isEditing = true
-        shareButton.isEnabled = self.isEditing
+        shareButton.isEnabled = true
     }
 }
