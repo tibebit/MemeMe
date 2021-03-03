@@ -168,6 +168,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareMeme(_ sender: Any) {
+        
+        let memedImage = generateMemedImage()
+        let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        
+        activityViewController.completionWithItemsHandler = {
+            (_ , completed, _, _) in
+            if completed {
+                self.save(memedImage)
+            }
+        }
+        self.present(activityViewController, animated: true)
     }
     //MARK: ImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
