@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
         //if the keyboard is going to hide the textfield the view slides up. The view slides up only if the view has not been shifted up and it is in the "initial state"
@@ -71,6 +72,7 @@ class ViewController: UIViewController {
             view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
+    
     func getKeyboardY(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -84,12 +86,14 @@ class ViewController: UIViewController {
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.size.height
     }
+    
     func showKeyboard() {
         
         if let activeTextField = activeTextField {
             activeTextField.becomeFirstResponder()
         }
     }
+    
     func hideKeyboard()  {
         
         if let activeTextField = activeTextField {
@@ -139,6 +143,7 @@ class ViewController: UIViewController {
         self.navigationController?.toolbar.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
     }
+    
     func showToolbarAndNavbar() {
         self.navigationController?.toolbar.isHidden = false
         self.navigationController?.navigationBar.isHidden = false
@@ -185,6 +190,7 @@ extension ViewController: UITextFieldDelegate {
         }
         showKeyboard()
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         return true

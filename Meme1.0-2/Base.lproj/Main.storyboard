@@ -39,7 +39,11 @@
                                                 <action selector="shareMeme:" destination="T3y-1x-tiT" id="tkM-5F-JLA"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="8G0-c1-Rke" userLabel="Cancel Button Item"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="8G0-c1-Rke" userLabel="Cancel Button Item">
+                                            <connections>
+                                                <action selector="resetDefaultContent:" destination="T3y-1x-tiT" id="keh-2a-qb5"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
