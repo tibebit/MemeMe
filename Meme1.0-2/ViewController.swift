@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-        //if the keyboard is going to hide the textfield the view slides up. The view slides up only if the view has not been shifted up and it is in the ""initial state"
+        //if the keyboard is going to hide the textfield the view slides up. The view slides up only if the view has not been shifted up and it is in the "initial state"
         if activeTextField!.frame.origin.y > getKeyboardY(notification) && view.frame.origin.y >= 0 {
             view.frame.origin.y -= getKeyboardHeight( notification)
         }
