@@ -28,13 +28,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textFieldsSetup()
+        self.isEditing = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
+        shareButton.isEnabled = self.isEditing
         subscribeToKeyboardNotifications()
     }
     
@@ -91,6 +92,7 @@ class ViewController: UIViewController {
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.origin.y
     }
+    
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -177,20 +179,12 @@ class ViewController: UIViewController {
             if completed {
                 self.save(memedImage)
             }
+            self.dismiss(animated: true, completion: nil)
         }
         
         self.present(activityViewController, animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //print("imagePickerController called")
-        
-        dismiss(animated: true, completion: nil)
-        
-        if let image = info[.originalImage] as? UIImage {
-            imagePickerView.image = image
-        }
-    }
 }
 extension ViewController: UITextFieldDelegate {
     
