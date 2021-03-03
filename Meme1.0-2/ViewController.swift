@@ -56,21 +56,45 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-        //dump(view.frame.origin)
-        view.frame.origin.y = -getKeyboardHeight( notification)
+      
+//        print("VIEW (show)")
+//        dump(view.frame.origin.y)
+//        print("TEXTFIELD (show)")
+//        dump(activeTextField?.frame.origin.y)
+//        print("KEYBOARD (show)")
+//        dump(getKeyboardHeight(notification))
+        
+        //if the keyboard is going to hide the textfield the view slides up
+        if activeTextField!.frame.origin.y > getKeyboardY(notification) {
+            view.frame.origin.y -= getKeyboardHeight( notification)
+        }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        //dump(view.frame.origin)
-        //dump(getKeyboardHeight(notification))
-        view.frame.origin.y = 0
+//        print("VIEW (hide)")
+//        dump(view.frame.origin.y)
+//        print("TEXTFIELD (hide)")
+//        dump(activeTextField?.frame.origin.y)
+//        print("KEYBOARD (hide)")
+//        dump(getKeyboardHeight(notification))
+//        print("NAVIGATION BAR (hide)")
+//        dump(navigationController!.navigationBar.frame.size.height)
+        //if the keyboard had shifted the view previously, the view get back to its original position
+        if view.frame.origin.y < 0 {
+            view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
-    
+    func getKeyboardY(_ notification: Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.origin.y
+    }
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.cgRectValue.height
+        return keyboardSize.cgRectValue.size.height
     }
     func showKeyboard() {
         
