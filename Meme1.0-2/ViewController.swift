@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         .strokeWidth: -3.0
     ]
+    //This variable keeps track of the current textfield selected by the user
     var activeTextField: UITextField?
     //MARK: Outlets
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -29,16 +30,23 @@ class ViewController: UIViewController {
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //TextFields Delegate setup
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
+        //TextFields appearance properties setup
         textFieldsDefaultAppearanceSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        //Camera button is enabled only if the device has a camera
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        //share button is disabled. It is disabled until the user picks an image from the photo album or device camera
         disableShareButton()
+        
+        //listen to keyboard notifications
         subscribeToKeyboardNotifications()
     }
     
@@ -62,14 +70,14 @@ class ViewController: UIViewController {
     
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-        //if the keyboard is going to hide the textfield the view slides up. The view slides up only if the view has not been shifted up and it is in the "initial state"
+        //If the keyboard is going to hide the textfield which the user is working on, the view slides up. The view slides up only if it has not already been shifted up previously.
         if activeTextField!.frame.origin.y > getKeyboardY(notification) && view.frame.origin.y >= 0 {
             view.frame.origin.y -= getKeyboardHeight( notification)
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        //if the keyboard had shifted the view previously, the view get back to its original position
+        //if the keyboard has shifted up the view previously, the view gets back to its original position
         if view.frame.origin.y < 0 {
             view.frame.origin.y += getKeyboardHeight(notification)
         }
@@ -127,14 +135,16 @@ class ViewController: UIViewController {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
     }
     func generateMemedImage() -> UIImage {
-        
+        //To avoid the toolbar and navbar to be shown in the render they are hidden
         hideToolbarAndNavbar()
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
+        
+        //Make the navbar and the toolbar visible again
         showToolbarAndNavbar()
         
         return memedImage
@@ -159,7 +169,7 @@ class ViewController: UIViewController {
         self.shareButton.isEnabled = false
     }
     //MARK: Actions
-    
+    //Polish the UI
     @IBAction func resetDefaultContent(_ sender: Any) {
         textFieldsDefaultAppearanceSetup()
         imagePickerView.image = nil
@@ -186,6 +196,7 @@ class ViewController: UIViewController {
         
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        //Only if the user completes the share action the meme is saved and the meme object is created
         activityViewController.completionWithItemsHandler = {
             (_ , completed, _, _) in
             if completed {
@@ -229,6 +240,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
         }
+        //The user has picked an image. So the share button is enabled
         enableShareButton()
     }
 }
