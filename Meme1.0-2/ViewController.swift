@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     
     //MARK: Properties
     let memeTextAttributes : [NSAttributedString.Key: Any] = [
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    
+
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,13 +178,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.save(memedImage)
             }
         }
-        self.present(activityViewController, animated: true)
-    }
-    //MARK: ImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //print("imagePickerControllerDidCancel called")
         
-        dismiss(animated: true, completion: nil)
+        self.present(activityViewController, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -206,5 +201,27 @@ extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         return true
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.isEditing
+    }
+}
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK: ImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        dismiss(animated: true, completion: nil)
+        
+        if let image = info[.originalImage] as? UIImage {
+            imagePickerView.image = image
+        }
+        self.isEditing = true
+        shareButton.isEnabled = self.isEditing
     }
 }
