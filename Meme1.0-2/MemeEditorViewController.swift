@@ -165,11 +165,11 @@ class MemeEditorViewController: UIViewController {
     
     //MARK: Image Picking
     //Pick an image using the given source
-    func pickAnImage(sourceType: UIImagePickerController.SourceType) {
+    func pickAnImage(from source: UIImagePickerController.SourceType) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = sourceType
+        imagePicker.sourceType = source
         self.present(imagePicker, animated: true, completion: nil)
     }
     //MARK: Actions
@@ -183,11 +183,11 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        pickAnImage(sourceType: .photoLibrary)
+        pickAnImage(from: .photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        pickAnImage(sourceType: .camera)
+        pickAnImage(from: .camera)
     }
     
     @IBAction func shareMeme(_ sender: Any) {
