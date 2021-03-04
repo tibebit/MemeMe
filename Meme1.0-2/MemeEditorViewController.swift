@@ -33,8 +33,10 @@ class MemeEditorViewController: UIViewController {
         //TextFields Delegate setup
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
+        
         //TextFields appearance properties setup
-        self.textFieldsDefaultAppearanceSetup()
+        self.configureAppearance(for: self.topTextField, withText: "TOP")
+        self.configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,21 +116,12 @@ class MemeEditorViewController: UIViewController {
     }
     
     //MARK: TextFields Setup
-    func textFieldsDefaultAppearanceSetup() {
-        //Top text field setup
-        self.topTextField.defaultTextAttributes = memeTextAttributes
-        self.topTextField.text = "TOP"
-        self.topTextField.textAlignment = .center
-        self.topTextField.adjustsFontSizeToFitWidth = true
-        self.topTextField.clearsOnBeginEditing = true
-        
-        //Bottom text field setup
-        self.bottomTextField.defaultTextAttributes = memeTextAttributes
-        self.bottomTextField.text = "BOTTOM"
-        self.bottomTextField.textAlignment = .center
-        self.bottomTextField.adjustsFontSizeToFitWidth = true
-        self.bottomTextField.clearsOnBeginEditing = true
-        
+    func configureAppearance(for textField: UITextField, withText text: String) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = text
+        textField.textAlignment = .center
+        textField.adjustsFontSizeToFitWidth = true
+        textField.clearsOnBeginEditing = true
     }
     //MARK: Meme Functions
     func save(_ memedImage: UIImage) {
@@ -173,7 +166,8 @@ class MemeEditorViewController: UIViewController {
     
     //Polish the UI
     @IBAction func resetDefaultContent(_ sender: Any) {
-        textFieldsDefaultAppearanceSetup()
+        configureAppearance(for: self.topTextField, withText: "TOP")
+        configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
         imagePickerView.image = nil
         self.disableShareButton()
     }
