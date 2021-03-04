@@ -162,6 +162,16 @@ class MemeEditorViewController: UIViewController {
     func disableShareButton() {
         self.shareButton.isEnabled = false
     }
+    
+    //MARK: Image Picking
+    //Pick an image using the given source
+    func pickAnImage(sourceType: UIImagePickerController.SourceType) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        self.present(imagePicker, animated: true, completion: nil)
+    }
     //MARK: Actions
     
     //Polish the UI
@@ -173,19 +183,11 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        self.present(imagePicker, animated: true, completion: nil)
+        pickAnImage(sourceType: .photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        self.present(imagePicker, animated: true, completion: nil)
+        pickAnImage(sourceType: .camera)
     }
     
     @IBAction func shareMeme(_ sender: Any) {
@@ -240,4 +242,5 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
         
         self.dismiss(animated: true, completion: nil)
     }
+    
 }
