@@ -88,16 +88,20 @@ class MemeEditorViewController: UIViewController {
     //Gets the y position of the keyboard
     func getKeyboardY(_ notification: Notification) -> CGFloat {
         
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardSize = getKeyboardSize(notification)
         return keyboardSize.cgRectValue.origin.y
     }
     
+    func getKeyboardSize(_ notification: Notification) -> NSValue {
+        
+        let userInfo = notification.userInfo
+        //Return the keyboard frame size
+        return userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+    }
     //Gets the height of the keyboard
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardSize = getKeyboardSize(notification)
         return keyboardSize.cgRectValue.size.height
     }
     //the current text field selected becomes the first responder and makes the keyboard appear on the screen
