@@ -31,31 +31,26 @@ class MemeEditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //TextFields Delegate setup
-        self.topTextField.delegate = self
-        self.bottomTextField.delegate = self
+        topTextField.delegate = self
+        bottomTextField.delegate = self
         
-        //TextFields appearance properties setup
-        self.configureAppearance(for: self.topTextField, withText: "TOP")
-        self.configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
+        configureAppearance(for: topTextField, withText: "TOP")
+        configureAppearance(for: bottomTextField, withText: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        //Camera button is enabled only if the device has a camera
-        self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
-        //share button is disabled. It is disabled until the user picks an image from the photo album or device camera
-        self.disableShareButton()
-        
-        //listen to keyboard notifications
-        self.subscribeToKeyboardNotifications()
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        //disableShareButton()
+        toggleControlState(component: shareButton, isEnabled: false)
+        subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     //MARK: Notifications
     func subscribeToKeyboardNotifications() {
@@ -85,7 +80,6 @@ class MemeEditorViewController: UIViewController {
         }
     }
     
-    //Gets the y position of the keyboard
     func getKeyboardY(_ notification: Notification) -> CGFloat {
         
         let keyboardSize = getKeyboardSize(notification)
@@ -95,7 +89,6 @@ class MemeEditorViewController: UIViewController {
     func getKeyboardSize(_ notification: Notification) -> NSValue {
         
         let userInfo = notification.userInfo
-        //Return the keyboard frame size
         return userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
     }
     //Gets the height of the keyboard
@@ -134,7 +127,9 @@ class MemeEditorViewController: UIViewController {
     }
     func generateMemedImage() -> UIImage {
         //To avoid the toolbar and navbar to be shown in the render they are hidden
-        self.hideToolbarAndNavbar()
+        //hideToolbarAndNavbar()
+        toggleViewVisibility(component: navbar, isHidden: true)
+        toggleViewVisibility(component: toolbar, isHidden: true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -142,8 +137,9 @@ class MemeEditorViewController: UIViewController {
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        //Make the navbar and the toolbar visible again
-        self.showToolbarAndNavbar()
+        //showToolbarAndNavbar()
+        toggleViewVisibility(component: navbar, isHidden: false)
+        toggleViewVisibility(component: toolbar, isHidden: false)
         
         return memedImage
     }
@@ -152,6 +148,14 @@ class MemeEditorViewController: UIViewController {
     func hideToolbarAndNavbar() {
         self.navbar.isHidden = true
         self.toolbar.isHidden = true
+    }
+    
+    func toggleViewVisibility(component: UIView, isHidden: Bool) {
+        component.isHidden = isHidden
+    }
+    
+    func toggleControlState(component: UIBarItem, isEnabled: Bool) {
+        component.isEnabled = isEnabled
     }
     
     func showToolbarAndNavbar() {
@@ -168,13 +172,12 @@ class MemeEditorViewController: UIViewController {
     }
     
     //MARK: Image Picking
-    //Pick an image using the given source
     func pickAnImage(from source: UIImagePickerController.SourceType) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
-        self.present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     //MARK: Actions
     
@@ -208,7 +211,7 @@ class MemeEditorViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
         
-        self.present(activityViewController, animated: true)
+        present(activityViewController, animated: true)
     }
     
 }
@@ -233,7 +236,7 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     //MARK: ImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -241,10 +244,11 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
         }
-        //The user has picked an image. So the share button is enabled
-        self.enableShareButton()
         
-        self.dismiss(animated: true, completion: nil)
+        //enableShareButton()
+        toggleControlState(component: shareButton, isEnabled: true)
+        
+        dismiss(animated: true, completion: nil)
     }
     
 }
