@@ -42,7 +42,6 @@ class MemeEditorViewController: UIViewController {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        //disableShareButton()
         toggleControlState(component: shareButton, isEnabled: false)
         subscribeToKeyboardNotifications()
     }
@@ -125,6 +124,7 @@ class MemeEditorViewController: UIViewController {
         
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
     }
+    
     func generateMemedImage() -> UIImage {
         //To avoid the toolbar and navbar to be shown in the render they are hidden
         //hideToolbarAndNavbar()
@@ -145,11 +145,6 @@ class MemeEditorViewController: UIViewController {
     }
     
     //MARK: UI Functions
-    func hideToolbarAndNavbar() {
-        self.navbar.isHidden = true
-        self.toolbar.isHidden = true
-    }
-    
     func toggleViewVisibility(component: UIView, isHidden: Bool) {
         component.isHidden = isHidden
     }
@@ -157,20 +152,7 @@ class MemeEditorViewController: UIViewController {
     func toggleControlState(component: UIBarItem, isEnabled: Bool) {
         component.isEnabled = isEnabled
     }
-    
-    func showToolbarAndNavbar() {
-        self.navbar.isHidden = false
-        self.toolbar.isHidden = false
-    }
-    
-    func enableShareButton() {
-        self.shareButton.isEnabled = true
-    }
-    
-    func disableShareButton() {
-        self.shareButton.isEnabled = false
-    }
-    
+
     //MARK: Image Picking
     func pickAnImage(from source: UIImagePickerController.SourceType) {
         
@@ -186,7 +168,7 @@ class MemeEditorViewController: UIViewController {
         configureAppearance(for: self.topTextField, withText: "TOP")
         configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
         imagePickerView.image = nil
-        self.disableShareButton()
+        toggleControlState(component: shareButton, isEnabled: false)
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
