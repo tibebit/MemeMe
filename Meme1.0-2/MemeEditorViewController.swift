@@ -119,6 +119,7 @@ class MemeEditorViewController: UIViewController {
         textField.adjustsFontSizeToFitWidth = true
         textField.clearsOnBeginEditing = true
     }
+    
     //MARK: Meme Functions
     func save(_ memedImage: UIImage) {
         
