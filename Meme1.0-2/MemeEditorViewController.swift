@@ -44,12 +44,18 @@ class MemeEditorViewController: UIViewController {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         toggleControlState(component: shareButton, isEnabled: false)
         subscribeToKeyboardNotifications()
+        
+        toggleViewVisibility(component: navigationController!.navigationBar, isHidden: true)
+        toggleViewVisibility(component: tabBarController!.tabBar, isHidden: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+        
+        toggleViewVisibility(component: navigationController!.navigationBar, isHidden: false)
+        toggleViewVisibility(component: tabBarController!.tabBar, isHidden: false)
     }
     //MARK: Notifications
     func subscribeToKeyboardNotifications() {
@@ -175,6 +181,8 @@ class MemeEditorViewController: UIViewController {
         configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
         imagePickerView.image = nil
         toggleControlState(component: shareButton, isEnabled: false)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
