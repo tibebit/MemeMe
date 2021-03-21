@@ -7,19 +7,12 @@
 
 import UIKit
 
-class SentMemesCollectionVC: UIViewController {
+class SentMemesCollectionVC: UICollectionViewController {
     
     //MARK: Properties
     var memes: [Meme] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.memes
     }
-    
-    override func viewDidLoad() {
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
+
 }
