@@ -141,13 +141,29 @@
         <!--Meme DetailVC-->
         <scene sceneID="hJu-K0-ZZr">
             <objects>
-                <viewController id="iod-y0-qie" customClass="MemeDetailVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailVC" id="iod-y0-qie" customClass="MemeDetailVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpd-Hu-ezp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PX0-Ek-lfH">
+                                <rect key="frame" x="0.0" y="161" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PX0-Ek-lfH" secondAttribute="height" multiplier="1:1" id="67j-dL-PPh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="P6x-hC-zDR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PX0-Ek-lfH" firstAttribute="centerX" secondItem="P6x-hC-zDR" secondAttribute="centerX" id="0nU-2E-rX6"/>
+                            <constraint firstItem="PX0-Ek-lfH" firstAttribute="width" secondItem="hpd-Hu-ezp" secondAttribute="width" id="RAO-Ns-yPa"/>
+                            <constraint firstItem="PX0-Ek-lfH" firstAttribute="centerY" secondItem="P6x-hC-zDR" secondAttribute="centerY" id="gxb-ix-cOn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="memedImage" destination="PX0-Ek-lfH" id="jgq-dX-kZT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REd-xf-AgQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
