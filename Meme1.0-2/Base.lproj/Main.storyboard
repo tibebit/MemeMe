@@ -60,7 +60,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="RgU-Ti-hXc">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="CK1-OK-oe2"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="CK1-OK-oe2">
+                            <connections>
+                                <segue destination="T3y-1x-tiT" kind="show" id="eNm-zI-g97"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnX-8d-kig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -131,7 +135,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="8zd-sy-VcJ">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="BI6-nz-CeU"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="BI6-nz-CeU">
+                            <connections>
+                                <segue destination="T3y-1x-tiT" kind="show" id="Sed-zm-wyi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHB-h2-7Xz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -167,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REd-xf-AgQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2583" y="-184"/>
+            <point key="canvasLocation" x="3059" y="66"/>
         </scene>
         <!--Meme Editor View Controller-->
         <scene sceneID="yJr-hK-eNz">
@@ -248,6 +256,9 @@
                             <constraint firstItem="Egk-8f-Scv" firstAttribute="top" secondItem="GN2-D0-ELn" secondAttribute="bottom" id="rSx-DK-1ZZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9Zq-Tt-uNc"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="0z1-kL-rmO" id="2d7-ZW-1BN"/>
                         <outlet property="cameraButton" destination="iKa-Ik-f0T" id="rBd-I3-jhe"/>
@@ -260,9 +271,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oT3-nb-Zy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2583" y="513"/>
+            <point key="canvasLocation" x="2539" y="66"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Sed-zm-wyi"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="collection_30x30" width="30" height="30"/>
