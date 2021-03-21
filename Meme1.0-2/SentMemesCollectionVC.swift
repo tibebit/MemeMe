@@ -14,5 +14,14 @@ class SentMemesCollectionVC: UICollectionViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.memes
     }
-
+    
+    //MARK: Data Source
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return memes.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier identifier: "MemeItem", for indexPath: indexPath)
+        return item
+    }
+    //MARK: Delegate
 }
