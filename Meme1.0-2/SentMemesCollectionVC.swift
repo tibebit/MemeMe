@@ -17,7 +17,11 @@ class SentMemesCollectionVC: UICollectionViewController {
         return memes.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeItem", for: indexPath)
+        let item = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeItem", for: indexPath) as! MemeCollectionViewCell
+        
+        let meme = memes[indexPath.item]
+        item.memedImage.image = meme.memedImage
+    
         return item
     }
     //MARK: Delegate
