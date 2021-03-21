@@ -24,4 +24,7 @@ class SentMemesCollectionVC: UICollectionViewController {
         return item
     }
     //MARK: Delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC
+    }
 }
