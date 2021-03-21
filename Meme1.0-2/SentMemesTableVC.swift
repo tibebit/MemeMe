@@ -9,8 +9,23 @@ import UIKit
 
 class SentMemesTableVC: UITableViewController {
     
+    //MARK: Properties
     var memes: [Meme] {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         return delegate.memes
+    }
+    
+    //MARK: Data Source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return memes.count
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableCell")!
+        
+        return cell
+    }
+    //MARK: Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
