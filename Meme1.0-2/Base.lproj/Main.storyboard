@@ -113,7 +113,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fz0-ft-lTT">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fz0-ft-lTT">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -129,12 +129,15 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BWN-lk-ibh">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="128" id="ArK-Bd-x1N"/>
+                                                <constraint firstAttribute="height" constant="128" id="KjK-jh-zKL"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="BWN-lk-ibh" firstAttribute="height" secondItem="TQF-Mt-tcy" secondAttribute="height" id="Kuf-pS-NMa"/>
-                                        <constraint firstItem="BWN-lk-ibh" firstAttribute="width" secondItem="TQF-Mt-tcy" secondAttribute="width" id="WA0-Xl-192"/>
-                                        <constraint firstItem="BWN-lk-ibh" firstAttribute="centerY" secondItem="TQF-Mt-tcy" secondAttribute="centerY" id="Xd6-73-v5y"/>
+                                        <constraint firstAttribute="bottom" secondItem="BWN-lk-ibh" secondAttribute="bottom" id="9Ku-yh-YVj"/>
+                                        <constraint firstItem="BWN-lk-ibh" firstAttribute="top" secondItem="TQF-Mt-tcy" secondAttribute="top" id="Mxw-KD-7Zg"/>
                                         <constraint firstItem="BWN-lk-ibh" firstAttribute="centerX" secondItem="TQF-Mt-tcy" secondAttribute="centerX" id="rBp-Bs-pzA"/>
                                     </constraints>
                                 </collectionViewCellContentView>
