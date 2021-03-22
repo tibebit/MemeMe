@@ -32,7 +32,7 @@ class SentMemesCollectionVC: UICollectionViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        collectionView.reloadData()
     }
     //MARK: Data Source
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
