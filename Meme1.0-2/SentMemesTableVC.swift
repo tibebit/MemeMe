@@ -10,7 +10,7 @@ import UIKit
 class SentMemesTableVC: UITableViewController {
     
     //MARK: Properties
-    var memes: [Meme] {
+    var memes: [Meme]! {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         return delegate.memes
     }
