@@ -8,9 +8,16 @@
 import UIKit
 
 class SentMemesCollectionVC: UICollectionViewController {
+    
+    //MARK: Properties
     var memes: [Meme] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.memes
+    }
+    //MARK: Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     //MARK: Data Source
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -21,13 +28,13 @@ class SentMemesCollectionVC: UICollectionViewController {
         
         let meme = memes[indexPath.item]
         item.memedImage.image = meme.memedImage
-    
+        
         return item
     }
     //MARK: Delegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailVC") as! MemeDetailVC
-        memeDetailVC.memedImage.image = memes[indexPath.row].memedImage
+        memeDetailVC.meme = memes[indexPath.item]
         navigationController?.pushViewController(memeDetailVC, animated: true)
     }
 }
