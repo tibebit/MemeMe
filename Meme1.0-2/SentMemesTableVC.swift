@@ -31,7 +31,7 @@ class SentMemesTableVC: UITableViewController {
     //MARK: Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailVC") as! MemeDetailVC
-        memeDetailVC.memedImage.image = memes[indexPath.row].memedImage
+        memeDetailVC.meme = memes[indexPath.row]
         navigationController?.pushViewController(memeDetailVC, animated: true)
     }
 }

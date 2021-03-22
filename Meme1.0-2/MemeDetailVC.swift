@@ -9,6 +9,14 @@ import UIKit
 
 class MemeDetailVC: UIViewController {
     
+    var meme: Meme!
+    
     @IBOutlet weak var memedImage: UIImageView!
     
+    //MARK: Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        memedImage.image = meme.memedImage
+    }
 }
