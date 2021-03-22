@@ -9,6 +9,8 @@ import UIKit
 
 class SentMemesCollectionVC: UICollectionViewController {
     
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     //MARK: Properties
     var memes: [Meme] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
