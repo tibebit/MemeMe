@@ -63,7 +63,7 @@ extension Meme {
             [Meme.TopText : "Rosa Klebb", Meme.BottomText : "Humiliate MI6",  Meme.MemedImageName : "original"],
             [Meme.TopText : "Emilio Largo", Meme.BottomText : "Steal nuclear weapons", Meme.MemedImageName : "pool"],
             [Meme.TopText : "Le Chiffre", Meme.BottomText : "Beat bond at poker.",  Meme.MemedImageName : "sight"],
-            [Meme.TopText : "Odd Job", Meme.BottomText : "Kill Bond with razor hat.",  Meme.MemedImageName : "OddJob"],
+            [Meme.TopText : "Odd Job", Meme.BottomText : "Kill Bond with razor hat.",  Meme.MemedImageName : "sunset"],
             [Meme.TopText : "Francisco Scaramanga", Meme.BottomText : "Kill Bond after assembling a golden gun.",  Meme.MemedImageName : "small"],
             [Meme.TopText : "Raoul Silva", Meme.BottomText : "Kill M.",  Meme.MemedImageName : "original"],
             [Meme.TopText : "Alec Trevelyan", Meme.BottomText : "Nuke London, after killing Bond.",  Meme.MemedImageName : "pool"],
