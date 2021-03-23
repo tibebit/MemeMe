@@ -14,7 +14,9 @@ struct Meme {
     let image: UIImage
     let memedImage: UIImage
     
-    //MARK: Testing code: this code has been written for layout testing concerning the collection view and table view
+    //MARK: TESTING CODE: this code has been written for layout testing concerning the collection view and table view
+    //Previous code: remove all of these stuffs from here to the bottom of the file
+    // This variable refers to the images added into the assets folder
     let memedImageName: String
     
     static let MemedImageName = "MemedImageName"
@@ -30,7 +32,13 @@ struct Meme {
         memedImage = UIImage()
         
     }
-    
+    init(topText: String, bottomText: String, image: UIImage, memedImage: UIImage) {
+        self.topText = topText
+        self.bottomText = bottomText
+        self.image = image
+        self.memedImage = memedImage
+        self.memedImageName = "sight"
+    }
 }
 extension Meme {
     
@@ -64,3 +72,4 @@ extension Meme {
         ]
     }
 }
+//MARK: END TESTING

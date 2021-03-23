@@ -11,8 +11,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // shared model
-    var memes = [Meme]()
-
+    //MARK: TESTING CODE
+    //Previous code: var memes = [Meme]()
+    var memes = Meme.allMemes
+    //MARK: END TESTING
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
