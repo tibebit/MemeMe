@@ -29,6 +29,7 @@ class SentMemesTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableCell")!
         
         let meme = memes[indexPath.row]
+        cell.imageView?.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: cell.frame.minY), size: CGSize(width: 128, height: 128))
         cell.imageView?.image = meme.memedImage
         cell.textLabel?.text = meme.topText + " " + meme.bottomText
         
