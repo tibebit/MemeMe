@@ -37,8 +37,7 @@ class SentMemesCollectionVC: UICollectionViewController, UICollectionViewDelegat
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeItem", for: indexPath) as! MemeCollectionViewCell
         
         let meme = memes[(indexPath as NSIndexPath).row]
-        //MARK: TESTING CODE
-        item.memedImage?.image = UIImage(named: meme.memedImageName) ?? meme.memedImage
+        item.memedImage?.image = meme.memedImage
         
         return item
     }
