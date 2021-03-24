@@ -29,9 +29,9 @@ class SentMemesTableVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableCell") as! MemeTableViewCell
         
         let meme = memes[indexPath.row]
-        cell.memedImage?.image = UIImage(named: meme.memedImageName)
+        //MARK: TESTING CODE
+        cell.memedImage?.image = UIImage(named: meme.memedImageName) ?? meme.memedImage
         cell.memeText?.text = meme.topText + " " + meme.bottomText
-        
         return cell
     }
     //MARK: Delegate
