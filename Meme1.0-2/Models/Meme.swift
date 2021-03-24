@@ -37,7 +37,7 @@ struct Meme {
         self.bottomText = bottomText
         self.image = image
         self.memedImage = memedImage
-        self.memedImageName = "sight"
+        self.memedImageName = ""
     }
 }
 extension Meme {
