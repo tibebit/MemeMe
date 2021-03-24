@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SentMemesCollectionVC: UICollectionViewController {
+class SentMemesCollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -21,9 +21,7 @@ class SentMemesCollectionVC: UICollectionViewController {
         super.viewDidLoad()
         
         let space: CGFloat = 3.0
-        let dimension = (view.frame.size.width - (space * 2)) / 2
-        dump(dimension)
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
     }
@@ -43,10 +41,18 @@ class SentMemesCollectionVC: UICollectionViewController {
         
         return item
     }
+    
     //MARK: Delegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let memeDetailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailVC") as! MemeDetailVC
         memeDetailVC.meme = memes[indexPath.row]
         navigationController?.pushViewController(memeDetailVC, animated: true)
+    }
+    //MARK: TESTING CODE. FLOW LAYOUT DELEGATE
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let space: CGFloat = 3.0
+        let totalWidth = view.frame.size.width
+        let width = (totalWidth - (space * 2)) / 3
+        return CGSize(width: width, height: width)
     }
 }
