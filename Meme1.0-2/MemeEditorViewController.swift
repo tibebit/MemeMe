@@ -205,6 +205,7 @@ class MemeEditorViewController: UIViewController {
             }
             //The activity view controller is dismissed
             self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         
         present(activityViewController, animated: true)
