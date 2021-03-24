@@ -10,9 +10,4 @@ import UIKit
 class MemeTableViewCell: UITableViewCell {
     @IBOutlet weak var memedImage: UIImageView!
     @IBOutlet weak var memeText: UILabel!
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.layoutMargins = UIEdgeInsets()
-    }
 }
