@@ -8,21 +8,13 @@
 import UIKit
 
 class MemeEditorViewController: UIViewController {
-    
-    //MARK: Properties
-    let memeTextAttributes : [NSAttributedString.Key: Any] = [
-        .strokeColor: UIColor.black,
-        .foregroundColor: UIColor.white,
-        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        .strokeWidth: -3.0
-    ]
     //This variable keeps track of the current textfield selected by the user
     var activeTextField: UITextField?
     //MARK: Outlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topTextField: MemeMeTextField!
+    @IBOutlet weak var bottomTextField: MemeMeTextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -34,8 +26,7 @@ class MemeEditorViewController: UIViewController {
         topTextField.delegate = self
         bottomTextField.delegate = self
         
-        configureAppearance(for: topTextField, withText: "TOP")
-        configureAppearance(for: bottomTextField, withText: "BOTTOM")
+        resetTextFieldsText()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,12 +109,9 @@ class MemeEditorViewController: UIViewController {
     }
     
     //MARK: TextFields Setup
-    func configureAppearance(for textField: UITextField, withText text: String) {
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.text = text
-        textField.textAlignment = .center
-        textField.adjustsFontSizeToFitWidth = true
-        textField.clearsOnBeginEditing = true
+    func resetTextFieldsText() {
+        topTextField.set(text: "TOP")
+        bottomTextField.set(text: "BOTTOM")
     }
     
     //MARK: Meme Functions
@@ -177,8 +165,7 @@ class MemeEditorViewController: UIViewController {
     
     //Polish the UI
     @IBAction func resetDefaultContent(_ sender: Any) {
-        configureAppearance(for: self.topTextField, withText: "TOP")
-        configureAppearance(for: self.bottomTextField, withText: "BOTTOM")
+        resetTextFieldsText()
         imagePickerView.image = nil
         toggleControlState(component: shareButton, isEnabled: false)
         
