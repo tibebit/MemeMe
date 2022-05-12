@@ -20,6 +20,7 @@
 		CD4A7E8525EA830800879F28 /* Meme1_0_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A7E8425EA830800879F28 /* Meme1_0_2Tests.swift */; };
 		CD4A7E9025EA830900879F28 /* Meme1_0_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4A7E8F25EA830900879F28 /* Meme1_0_2UITests.swift */; };
 		CD6497D525EEB0FB00BE738E /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6497D425EEB0FB00BE738E /* Meme.swift */; };
+		CDB9C16E282D05E600A08C14 /* MemeMeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB9C16D282D05E600A08C14 /* MemeMeTextField.swift */; };
 		CDD55605260932ED009A5F76 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD55604260932ED009A5F76 /* MemeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		CD4A7E8F25EA830900879F28 /* Meme1_0_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme1_0_2UITests.swift; sourceTree = "<group>"; };
 		CD4A7E9125EA830900879F28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD6497D425EEB0FB00BE738E /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		CDB9C16D282D05E600A08C14 /* MemeMeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeTextField.swift; sourceTree = "<group>"; };
 		CDD55604260932ED009A5F76 /* MemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				CD4A7E7625EA830800879F28 /* Assets.xcassets */,
 				CD4A7E7825EA830800879F28 /* LaunchScreen.storyboard */,
 				CD4A7E7B25EA830800879F28 /* Info.plist */,
+				CDB9C16D282D05E600A08C14 /* MemeMeTextField.swift */,
 			);
 			path = "Meme1.0-2";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				CD3F80E42607F00300E5B6D7 /* MemeCollectionViewCell.swift in Sources */,
 				CD3F80D72607CD4F00E5B6D7 /* MemeDetailVC.swift in Sources */,
 				CD6497D525EEB0FB00BE738E /* Meme.swift in Sources */,
+				CDB9C16E282D05E600A08C14 /* MemeMeTextField.swift in Sources */,
 				CD4A7E6E25EA830700879F28 /* AppDelegate.swift in Sources */,
 				CDD55605260932ED009A5F76 /* MemeTableViewCell.swift in Sources */,
 				CD3F80DF2607D37500E5B6D7 /* SentMemesCollectionVC.swift in Sources */,
@@ -487,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWZQMYFD84;
 				INFOPLIST_FILE = "Meme1.0-2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWZQMYFD84;
 				INFOPLIST_FILE = "Meme1.0-2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
