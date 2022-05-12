@@ -1,5 +1,5 @@
 # MemeMe2.0
-MemeMe is a meme-generating app that enables users to attach a caption to a picture from their phone. After adding text to an image chosen from the Photo Album or Camera, users can share it with friends. MemeMe also temporarily stores sent memes which users can browse in a table or a grid.
+MemeMe is a meme-generating app that enables users to attach a caption to a picture. Users pick the picture from the device's camera or photo album. After creating the meme, users can share it with friends.
 
 ## Screens Overview
 The app has three pages of content:
@@ -8,14 +8,40 @@ The app has three pages of content:
 * **Meme Detail View:** Displays a meme fullscreen
 ## Screens Details
 ### Meme Editor View
-The Meme Editor View consists of the following components:
+It onsists of the following components:
 * An Image View with two text fields on top of it. They prompt the user to create his meme.
-* Two navigation buttons on the bottom:
+* two navigation buttons on the bottom:
   * one for accessing the device's camera
   * one for viewing the sent memes list
-* A share button on the top-left corner of the screen
-* A Cancel button on the top-right corner of the screen
+* a _Share_ button on the top-left corner of the screen
+* a _Cancel_ button on the top-right corner of the screen
 ### Sent Memes View
-The Sent Memes View displays recently sent memes, allowing users to see them in a table or grid. Selecting a meme from the table or collection presents the Meme Detail View. Pressing the “Add” button in the right corner of the Top Navigation Bar brings up the Meme Editor View.
-### Meme Detail View
-The Meme Detail View displays the selected meme in an image view in the center of the page with the meme’s original aspect ratio. The detail view has a back arrow in the top left corner. To the right of the arrow reads the title of the previous view, “Sent Memes.”
+It consists of the following components:
+* a grid or table showing recently sent memes. Each meme image gets presented fullscreen when tapped
+* an Add button to navigate to the MemeEditorView
+## Requirements
+To build and run the app, you need the following:
+* iOS 13.0
+* Xcode 11
+## License
+MIT License
+
+Copyright (c) 2022 Fabio Tiberio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
