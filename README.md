@@ -8,7 +8,7 @@ The app has three pages of content:
 * **Meme Detail View:** Displays a meme fullscreen
 ## Screens Details
 ### Meme Editor View
-It onsists of the following components:
+It consists of the following components:
 * An Image View with two text fields on top of it. They prompt the user to create his meme.
 * two navigation buttons on the bottom:
   * one for accessing the device's camera
