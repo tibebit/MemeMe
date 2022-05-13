@@ -1,5 +1,5 @@
 //
-//  MemeEditorViewController.swift
+//  MemeEditorVC.swift
 //  Meme1.0-2
 //
 //  Created by Fabio Tiberio on 27/02/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController {
+class MemeEditorVC: UIViewController {
     //This variable keeps track of the current textfield selected by the user
     var activeTextField: UITextField?
     //MARK: Outlets
@@ -22,7 +22,6 @@ class MemeEditorViewController: UIViewController {
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TextFields Delegate setup
         topTextField.delegate = self
         bottomTextField.delegate = self
         
@@ -199,7 +198,7 @@ class MemeEditorViewController: UIViewController {
     }
     
 }
-extension MemeEditorViewController: UITextFieldDelegate {
+extension MemeEditorVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
@@ -215,7 +214,7 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
 }
-extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: ImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
