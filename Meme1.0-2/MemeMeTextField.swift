@@ -22,7 +22,7 @@ public class MemeMeTextField: UITextField {
         ]
        textAlignment = .center
        adjustsFontSizeToFitWidth = true
-       clearsOnBeginEditing = true
+       clearsOnBeginEditing = false
     }
     
     public func set(text: String) {
