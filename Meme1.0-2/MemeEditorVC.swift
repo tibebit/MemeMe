@@ -62,17 +62,15 @@ class MemeEditorVC: UIViewController {
     
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-        //If the keyboard is going to hide the textfield which the user is working on, the view slides up. The view slides up only if it has not already been shifted up previously.
-        if activeTextField!.frame.origin.y > getKeyboardY(notification) && view.frame.origin.y >= 0 {
-            view.frame.origin.y -= getKeyboardHeight( notification)
+        // Prevent the keyborad from hiding the bottom text field
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y += getKeyboardHeight(notification) * (-1)
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        //if the keyboard has shifted up the view previously, the view gets back to its original position
-        if view.frame.origin.y < 0 {
-            view.frame.origin.y += getKeyboardHeight(notification)
-        }
+        // Set the view to its original position
+        view.frame.origin.y = 0
     }
     
     func getKeyboardY(_ notification: Notification) -> CGFloat {
@@ -86,7 +84,8 @@ class MemeEditorVC: UIViewController {
         let userInfo = notification.userInfo
         return userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
     }
-    //Gets the height of the keyboard
+   
+    
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         
         let keyboardSize = getKeyboardSize(notification)
