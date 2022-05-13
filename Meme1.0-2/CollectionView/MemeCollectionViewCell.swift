@@ -10,4 +10,8 @@ import UIKit
 class MemeCollectionViewCell: UICollectionViewCell, MemeCell {
     static let identifier = String(describing: MemeCollectionViewCell.self)
     @IBOutlet weak var memedImage: UIImageView!
+    
+    func configure(image: UIImage) {
+        self.memedImage.image = image
+    }
 }
