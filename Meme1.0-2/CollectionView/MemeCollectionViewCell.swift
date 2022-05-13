@@ -7,6 +7,7 @@
 
 import UIKit
 
-class MemeCollectionViewCell: UICollectionViewCell {
+class MemeCollectionViewCell: UICollectionViewCell, MemeCell {
+    static let identifier = String(describing: MemeCollectionViewCell.self)
     @IBOutlet weak var memedImage: UIImageView!
 }

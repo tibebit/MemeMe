@@ -7,7 +7,8 @@
 
 import UIKit
 
-class MemeTableViewCell: UITableViewCell {
+class MemeTableViewCell: UITableViewCell, MemeCell {
+    static let identifier = String(describing: MemeTableViewCell.self)
     @IBOutlet weak var memedImage: UIImageView!
     @IBOutlet weak var memeText: UILabel!
 }
