@@ -120,36 +120,33 @@ class MemeEditorVC: UIViewController {
     
     //MARK: Meme Functions
     func save(_ memedImage: UIImage) {
-        
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage)
-        
-        //get the instance of the AppDelegate
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
-        delegate.memes.append(meme)
+        delegate.memes.append(
+            Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage))
     }
     
     
     func generateMemedImage() -> UIImage {
+        func renderImage() -> UIImage {
+            UIGraphicsImageRenderer(bounds: view.bounds).image { context in
+                view.layer.render(in: context.cgContext)
+            }
+        }
         //To avoid the toolbar and navbar to be shown in the render they are hidden
         //hideToolbarAndNavbar()
-//        toggleViewVisibility(component: navbar, isHidden: true)
         navigationController?.navigationBar.isHidden = true
         toggleViewVisibility(component: toolbar, isHidden: true)
         
-        // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        let memedImage = renderImage()
         
         //showToolbarAndNavbar()
-//        toggleViewVisibility(component: navbar, isHidden: false)
         navigationController?.navigationBar.isHidden = false
         toggleViewVisibility(component: toolbar, isHidden: false)
         
         return memedImage
     }
+    
     
     //MARK: UI Functions
     func toggleViewVisibility(component: UIView, isHidden: Bool) {
