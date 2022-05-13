@@ -8,8 +8,7 @@
 import UIKit
 
 class MemeEditorVC: UIViewController {
-    //This variable keeps track of the current textfield selected by the user
-    var activeTextField: UITextField?
+
     //MARK: Outlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -91,20 +90,6 @@ class MemeEditorVC: UIViewController {
         let keyboardSize = getKeyboardSize(notification)
         return keyboardSize.cgRectValue.size.height
     }
-    //the current text field selected becomes the first responder and makes the keyboard appear on the screen
-    func showKeyboard() {
-        
-        if let activeTextField = activeTextField {
-            activeTextField.becomeFirstResponder()
-        }
-    }
-    //the current text field selected becomes the first responder and makes the keyboard disappear off the screen
-    func hideKeyboard()  {
-        
-        if let activeTextField = activeTextField {
-            activeTextField.resignFirstResponder()
-        }
-    }
     
     //MARK: TextFields Setup
     func resetTextFieldsText() {
@@ -161,8 +146,7 @@ class MemeEditorVC: UIViewController {
     }
     //MARK: Actions
     
-    //Polish the UI
-    @IBAction func resetDefaultContent(_ sender: Any) {
+    @IBAction func resetViewState(_ sender: Any) {
         resetTextFieldsText()
         imagePickerView.image = nil
         toggleControlState(component: shareButton, isEnabled: false)
@@ -182,7 +166,7 @@ class MemeEditorVC: UIViewController {
         
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        //Only if the user completes the share action the meme is saved and the meme object is created
+        // The meme gets saved only if the user completes the sharing process
         activityViewController.completionWithItemsHandler = {
             (_ , completed, _, _) in
             if completed {
@@ -199,19 +183,10 @@ class MemeEditorVC: UIViewController {
 }
 extension MemeEditorVC: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
-        if textField.clearsOnBeginEditing {
-            textField.clearsOnBeginEditing = false
-        }
-        self.showKeyboard()
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
+        textField.resignFirstResponder()
         return true
     }
-    
 }
 extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -227,7 +202,6 @@ extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerD
             imagePickerView.image = image
         }
         
-        //enableShareButton()
         toggleControlState(component: shareButton, isEnabled: true)
         
         dismiss(animated: true, completion: nil)
