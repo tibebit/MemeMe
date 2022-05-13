@@ -8,10 +8,12 @@
 import UIKit
 
 public class MemeMeTextField: UITextField {
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
     }
+    
 
     private func configure() {
         defaultTextAttributes = [
@@ -24,6 +26,7 @@ public class MemeMeTextField: UITextField {
        adjustsFontSizeToFitWidth = true
        clearsOnBeginEditing = false
     }
+    
     
     public func set(text: String) {
         self.text = text
