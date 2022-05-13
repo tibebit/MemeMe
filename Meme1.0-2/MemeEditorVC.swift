@@ -14,9 +14,15 @@ class MemeEditorVC: UIViewController {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: MemeMeTextField!
     @IBOutlet weak var bottomTextField: MemeMeTextField!
-    @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var navbar: UINavigationBar!
     @IBOutlet weak var toolbar: UIToolbar!
+    
+    lazy var cancelButton: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(resetViewState(_:)))
+    }()
+    
+    lazy var shareButton: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareMeme(_:)))
+    }()
     
     //MARK: Lyfecycle
     override func viewDidLoad() {
@@ -24,19 +30,25 @@ class MemeEditorVC: UIViewController {
         topTextField.delegate = self
         bottomTextField.delegate = self
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(resetViewState(_:)))
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.leftBarButtonItem = shareButton
+        
         resetTextFieldsText()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        #warning("BUG->After picking the image from the camera, the share button gets set to false. This prevents the user from sending the meme to his friends")
         toggleControlState(component: shareButton, isEnabled: false)
         subscribeToKeyboardNotifications()
         
-        toggleViewVisibility(component: navigationController!.navigationBar, isHidden: true)
         toggleViewVisibility(component: tabBarController!.tabBar, isHidden: true)
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -46,6 +58,8 @@ class MemeEditorVC: UIViewController {
         toggleViewVisibility(component: navigationController!.navigationBar, isHidden: false)
         toggleViewVisibility(component: tabBarController!.tabBar, isHidden: false)
     }
+    
+    
     //MARK: Notifications
     func subscribeToKeyboardNotifications() {
         
@@ -53,11 +67,13 @@ class MemeEditorVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    
     func unsubscribeFromKeyboardNotifications() {
 
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
     
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
@@ -67,16 +83,19 @@ class MemeEditorVC: UIViewController {
         }
     }
     
+    
     @objc func keyboardWillHide(_ notification: Notification) {
         // Set the view to its original position
         view.frame.origin.y = 0
     }
+    
     
     func getKeyboardY(_ notification: Notification) -> CGFloat {
         
         let keyboardSize = getKeyboardSize(notification)
         return keyboardSize.cgRectValue.origin.y
     }
+    
     
     func getKeyboardSize(_ notification: Notification) -> NSValue {
         
@@ -91,11 +110,13 @@ class MemeEditorVC: UIViewController {
         return keyboardSize.cgRectValue.size.height
     }
     
+    
     //MARK: TextFields Setup
     func resetTextFieldsText() {
         topTextField.set(text: "TOP")
         bottomTextField.set(text: "BOTTOM")
     }
+    
     
     //MARK: Meme Functions
     func save(_ memedImage: UIImage) {
@@ -108,10 +129,12 @@ class MemeEditorVC: UIViewController {
         delegate.memes.append(meme)
     }
     
+    
     func generateMemedImage() -> UIImage {
         //To avoid the toolbar and navbar to be shown in the render they are hidden
         //hideToolbarAndNavbar()
-        toggleViewVisibility(component: navbar, isHidden: true)
+//        toggleViewVisibility(component: navbar, isHidden: true)
+        navigationController?.navigationBar.isHidden = true
         toggleViewVisibility(component: toolbar, isHidden: true)
         
         // Render view to an image
@@ -121,7 +144,8 @@ class MemeEditorVC: UIViewController {
         UIGraphicsEndImageContext()
         
         //showToolbarAndNavbar()
-        toggleViewVisibility(component: navbar, isHidden: false)
+//        toggleViewVisibility(component: navbar, isHidden: false)
+        navigationController?.navigationBar.isHidden = false
         toggleViewVisibility(component: toolbar, isHidden: false)
         
         return memedImage
@@ -132,9 +156,11 @@ class MemeEditorVC: UIViewController {
         component.isHidden = isHidden
     }
     
+    
     func toggleControlState(component: UIBarItem, isEnabled: Bool) {
         component.isEnabled = isEnabled
     }
+    
 
     //MARK: Image Picking
     func pickAnImage(from source: UIImagePickerController.SourceType) {
@@ -144,8 +170,9 @@ class MemeEditorVC: UIViewController {
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
     }
-    //MARK: Actions
     
+    
+    //MARK: Actions
     @IBAction func resetViewState(_ sender: Any) {
         resetTextFieldsText()
         imagePickerView.image = nil
@@ -154,13 +181,16 @@ class MemeEditorVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         pickAnImage(from: .photoLibrary)
     }
     
+    
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         pickAnImage(from: .camera)
     }
+    
     
     @IBAction func shareMeme(_ sender: Any) {
         
@@ -179,8 +209,9 @@ class MemeEditorVC: UIViewController {
         
         present(activityViewController, animated: true)
     }
-    
 }
+
+
 extension MemeEditorVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -188,6 +219,8 @@ extension MemeEditorVC: UITextFieldDelegate {
         return true
     }
 }
+
+
 extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: ImagePickerControllerDelegate
@@ -206,5 +239,4 @@ extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerD
         
         dismiss(animated: true, completion: nil)
     }
-    
 }
