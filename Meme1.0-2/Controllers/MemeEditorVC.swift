@@ -10,31 +10,39 @@ import UIKit
 class MemeEditorVC: UIViewController {
 
     //MARK: Outlets
-    @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var pickedImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: MemeMeTextField!
     @IBOutlet weak var bottomTextField: MemeMeTextField!
     @IBOutlet weak var toolbar: UIToolbar!
     
+    var memeImageObserver: NSKeyValueObservation?
+    
     lazy var cancelButton: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(resetViewState(_:)))
+        UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(popViewController))
     }()
     
     lazy var shareButton: UIBarButtonItem = {
+        let shareButton =
         UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareMeme(_:)))
+        shareButton.isEnabled = false
+        return shareButton
     }()
+    
+    func setupNavigationView() {
+        navigationItem.rightBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = shareButton
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
     
     //MARK: Lyfecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         topTextField.delegate = self
         bottomTextField.delegate = self
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(resetViewState(_:)))
-        navigationItem.setHidesBackButton(true, animated: false)
-        navigationItem.leftBarButtonItem = shareButton
-        
-        resetTextFieldsText()
+    
+        setupNavigationView()
+        resetViewState()
     }
     
     
@@ -42,11 +50,10 @@ class MemeEditorVC: UIViewController {
         
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        #warning("BUG->After picking the image from the camera, the share button gets set to false. This prevents the user from sending the meme to his friends")
-        toggleControlState(component: shareButton, isEnabled: false)
         subscribeToKeyboardNotifications()
-        
         toggleViewVisibility(component: tabBarController!.tabBar, isHidden: true)
+        
+        observePickedImage()
     }
     
     
@@ -55,8 +62,25 @@ class MemeEditorVC: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
         
-        toggleViewVisibility(component: navigationController!.navigationBar, isHidden: false)
+        resetViewState()
         toggleViewVisibility(component: tabBarController!.tabBar, isHidden: false)
+        
+        memeImageObserver = nil
+    }
+    
+    //MARK: - Observation
+    func observePickedImage() {
+        memeImageObserver = pickedImageView.observe(\.image) { [weak self] imageView, observer in
+            guard let self = self else { return }
+            guard observer.newValue != nil else {
+                
+                self.toggleBarItemState(component: self.shareButton, isEnabled: false)
+                return
+            }
+            self.toggleBarItemState(component: self.shareButton, isEnabled: true)
+            self.topTextField.toggle(isEnabled: true)
+            self.bottomTextField.toggle(isEnabled: true)
+        }
     }
     
     
@@ -77,7 +101,7 @@ class MemeEditorVC: UIViewController {
     
     //MARK: Keyboard Handling
     @objc func keyboardWillShow(_ notification:Notification) {
-        // Prevent the keyborad from hiding the bottom text field
+        // Prevent the keyboard from hiding the bottom text field
         if bottomTextField.isFirstResponder {
             view.frame.origin.y += getKeyboardHeight(notification) * (-1)
         }
@@ -112,9 +136,11 @@ class MemeEditorVC: UIViewController {
     
     
     //MARK: TextFields Setup
-    func resetTextFieldsText() {
+    func resetTextFields() {
         topTextField.set(text: "TOP")
         bottomTextField.set(text: "BOTTOM")
+        topTextField.toggle(isEnabled: false)
+        bottomTextField.toggle(isEnabled: false)
     }
     
     
@@ -123,7 +149,7 @@ class MemeEditorVC: UIViewController {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         
         delegate.memes.append(
-            Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imagePickerView.image!, memedImage: memedImage))
+            Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: pickedImageView.image!, memedImage: memedImage))
     }
     
     
@@ -133,30 +159,26 @@ class MemeEditorVC: UIViewController {
                 view.layer.render(in: context.cgContext)
             }
         }
-        //To avoid the toolbar and navbar to be shown in the render they are hidden
-        //hideToolbarAndNavbar()
-        navigationController?.navigationBar.isHidden = true
-        toggleViewVisibility(component: toolbar, isHidden: true)
+        
+        func prepareUIBeforeScreenshot() {
+            toggleViewVisibility(component: navigationController!.navigationBar, isHidden: true)
+            toggleViewVisibility(component: toolbar, isHidden: true)
+        }
+        
+        func restoreUIAfterScreenshot() {
+            toggleViewVisibility(component: navigationController!.navigationBar, isHidden: false)
+            toggleViewVisibility(component: toolbar, isHidden: false)
+        }
+        
+        prepareUIBeforeScreenshot()
         
         let memedImage = renderImage()
         
-        //showToolbarAndNavbar()
-        navigationController?.navigationBar.isHidden = false
-        toggleViewVisibility(component: toolbar, isHidden: false)
+        restoreUIAfterScreenshot()
         
         return memedImage
     }
     
-    
-    //MARK: UI Functions
-    func toggleViewVisibility(component: UIView, isHidden: Bool) {
-        component.isHidden = isHidden
-    }
-    
-    
-    func toggleControlState(component: UIBarItem, isEnabled: Bool) {
-        component.isEnabled = isEnabled
-    }
     
 
     //MARK: Image Picking
@@ -170,14 +192,14 @@ class MemeEditorVC: UIViewController {
     
     
     //MARK: Actions
-    @IBAction func resetViewState(_ sender: Any) {
-        resetTextFieldsText()
-        imagePickerView.image = nil
-        toggleControlState(component: shareButton, isEnabled: false)
-        
-        navigationController?.popViewController(animated: true)
+    private func resetViewState() {
+        resetTextFields()
+        pickedImageView.image = nil
     }
     
+    @objc func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         pickAnImage(from: .photoLibrary)
@@ -194,8 +216,9 @@ class MemeEditorVC: UIViewController {
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         // The meme gets saved only if the user completes the sharing process
-        activityViewController.completionWithItemsHandler = {
+        activityViewController.completionWithItemsHandler = { [weak self]
             (_ , completed, _, _) in
+            guard let self = self else { return }
             if completed {
                 self.save(memedImage)
             }
@@ -217,22 +240,18 @@ extension MemeEditorVC: UITextFieldDelegate {
     }
 }
 
-
+//MARK: ImagePickerControllerDelegate
 extension MemeEditorVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //MARK: ImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[.originalImage] as? UIImage {
-            imagePickerView.image = image
+            pickedImageView.image = image
         }
-        
-        toggleControlState(component: shareButton, isEnabled: true)
         
         dismiss(animated: true, completion: nil)
     }
