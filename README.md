@@ -9,8 +9,8 @@ The app has three pages of content:
 ## Screens Details
 ### Meme Editor View
 It consists of the following components:
-* An Image View with two text fields on top of it. They prompt the user to create his meme.
-* two navigation buttons on the bottom:
+* an Image View with two text fields on top of it. They prompt the user to create his meme.
+* a toolbar with two buttons:
   * one for accessing the device's camera
   * one for viewing the sent memes list
 * a _Share_ button on the top-left corner of the screen
@@ -19,6 +19,10 @@ It consists of the following components:
 It consists of the following components:
 * a grid or table showing recently sent memes. Each meme image gets presented fullscreen when tapped
 * an Add button to navigate to the MemeEditorView
+## Roadmap
+- [ ] Add memes persistence
+- [ ] Try to use the Adapter pattern to reduce the table and collection view controllers to just one controller
+- [ ] Make use of the MemeView in MemeEditorVC 
 ## Requirements
 To build and run the app, you need the following:
 * iOS 13.0
