@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d3X-sS-xOv">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -34,25 +32,25 @@
             <objects>
                 <tableViewController id="GeF-bf-rpO" customClass="SentMemesTableVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Qf-t7-VdI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" id="s39-ib-TxH" customClass="MemeTableViewCell" customModule="Meme1_0_2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="164"/>
+                                <rect key="frame" x="0.0" y="44.5" width="600" height="164"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s39-ib-TxH" id="yQZ-HC-ioR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="164"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oBX-24-eu0">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="156"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="156"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="156" id="Rcf-sd-HVe"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKa-hV-s33">
-                                            <rect key="frame" x="215" y="71.5" width="199" height="21"/>
+                                            <rect key="frame" x="308" y="71.5" width="292" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -135,7 +133,7 @@
             <objects>
                 <collectionViewController id="XkJ-iE-Cbs" customClass="SentMemesCollectionVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Zzz-m6-AzN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="Fz0-ft-lTT">
@@ -189,11 +187,11 @@
             <objects>
                 <viewController storyboardIdentifier="MemeDetailVC" id="iod-y0-qie" customClass="MemeDetailVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpd-Hu-ezp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PX0-Ek-lfH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -213,25 +211,25 @@
             <objects>
                 <viewController title="Meme Editor" id="T3y-1x-tiT" customClass="MemeEditorVC" customModule="Meme1_0_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="chK-pI-eYf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GN2-D0-ELn" userLabel="Image Picker View">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrn-Pz-eYS" userLabel="Top Text Field" customClass="MemeMeTextField" customModule="Meme1_0_2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="60" width="414" height="18.5"/>
+                                <rect key="frame" x="0.0" y="16" width="600" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0z1-kL-rmO" userLabel="Bottom Text Field" customClass="MemeMeTextField" customModule="Meme1_0_2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="778.5" width="414" height="18.5"/>
+                                <rect key="frame" x="0.0" y="521.5" width="600" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egk-8f-Scv">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4pa-Sz-VE8"/>
                                     <barButtonItem image="camera.fill" catalog="system" id="iKa-Ik-f0T" userLabel="Camera Button Item">
@@ -276,7 +274,7 @@
                     <connections>
                         <outlet property="bottomTextField" destination="0z1-kL-rmO" id="2d7-ZW-1BN"/>
                         <outlet property="cameraButton" destination="iKa-Ik-f0T" id="rBd-I3-jhe"/>
-                        <outlet property="imagePickerView" destination="GN2-D0-ELn" id="vaV-LQ-Zq1"/>
+                        <outlet property="pickedImageView" destination="GN2-D0-ELn" id="vaV-LQ-Zq1"/>
                         <outlet property="toolbar" destination="Egk-8f-Scv" id="IDY-p3-rFf"/>
                         <outlet property="topTextField" destination="Jrn-Pz-eYS" id="QhV-2J-oDK"/>
                     </connections>
